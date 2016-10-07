@@ -18,16 +18,19 @@ if (!defined('KONZILO_URL')) {
  * Send a refresh request to konzilo on save.
  */
 function konzilo_ping_save_update($post_id, $post) {
-  if ($post->post_type != 'post' || $post->post_status == 'trash'
-      || $post->post_status === 'auto-draft') {
-    return $post_id;
-  }
+    if ( defined('XMLRPC_REQUEST') && XMLRPC_REQUEST ) {
+        return;
+    }
+    if ($post->post_type != 'post' || $post->post_status == 'trash'
+        || $post->post_status === 'auto-draft') {
+        return $post_id;
+    }
   // Make a refresh request to konzilo.
-  $result = wp_remote_post(KONZILO_URL . '/api/ping', array(
-    'body' => array(
-      'id' => $post_id,
-      'host' => get_home_url()
-  )));
+    $result = wp_remote_post(KONZILO_URL . '/api/ping', array(
+        'body' => array(
+            'id' => $post_id,
+            'host' => get_home_url()
+        )));
 }
 
 add_action('save_post', 'konzilo_ping_save_update', 10, 2 );
