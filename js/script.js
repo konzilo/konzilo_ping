@@ -1,6 +1,7 @@
 (function ($) {
   $(function () {
     var updateSent = false;
+    var konziloReady = false;
     function sendMessage(message) {
       var frame = $('#konzilo-iframe')[0];
       if (!frame) {
@@ -11,6 +12,9 @@
     }
 
     window.addEventListener('message', function (message) {
+      if (message.data.type === 'konziloReady') {
+        konziloReady = true;
+      }
       if (message.data.type === 'updateSent') {
         updateSent = true;
         console.log('message received');
@@ -47,9 +51,7 @@
     $('.save-timestamp, .cancel-timestamp').click(syncPost);
 
     $('#post').submit(function (e) {
-      console.log('now then');
-      if (updateSent) {
-        console.log('lets get on with it.');
+      if (!konziloReady || updateSent) {
         return;
       }
       e.preventDefault();
