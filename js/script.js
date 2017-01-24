@@ -2,6 +2,13 @@
   $(function () {
     var updateSent = false;
     var konziloReady = false;
+    var status = $('#post_status').val();
+    var originalStatus = status;
+
+    $('#post_status').change(function () {
+      status = $(this).val();
+      syncPost();
+    });
     function sendMessage(message) {
       var frame = $('#konzilo-iframe')[0];
       if (!frame) {
@@ -17,15 +24,19 @@
       }
       if (message.data.type === 'updateSent') {
         updateSent = true;
-        console.log('message received');
-        $('#post').submit();
+        if (status === 'publish') {
+          $('#publish').click();
+        }
+        else {
+          $('#post').submit();
+        }
       }
       if (message.data.type === 'windowHeight') {
         $('#konzilo-iframe').height(message.data.height + 10);
       }
     });
 
-    function syncPost() {
+    function syncPost(e, save) {
       var title = $('#title').val();
 
       var month = $('#mm').val();
@@ -41,13 +52,20 @@
             + '+' + tz + ':00';
       var date = new Date(dateStr);
       sendMessage({
-        type: 'updateChanged',
+        type: save ? 'postSave' : 'updateChanged',
         remoteId: $('#ID').val(),
         publish_time: date,
-        title: title
+        title: title,
+        status: status
       });
     }
 
+    $('#publish').click(function (e) {
+      if (originalStatus !== 'publish') {
+        status = 'publish';
+      }
+    });
+    
     $('.save-timestamp, .cancel-timestamp').click(syncPost);
 
     $('#post').submit(function (e) {
@@ -56,8 +74,7 @@
       }
       e.preventDefault();
       e.stopPropagation();
-      sendMessage({ type: 'postSave' });
-
+      syncPost(e, true);
     });
     $('#title').change(syncPost);
   });
