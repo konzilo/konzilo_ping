@@ -72,5 +72,5 @@ function konzilo_ping_meta_box( $object, $box ) {
           '/update-iframe/' . $object->ID;
     $link .= '?site=' . urlencode(get_site_url());
 
-    echo "<iframe id=\"konzilo-iframe\" src=\"$link\" style=\"width: 100%; border: none; overflow: hidden; height: 300px;\"></iframe>";
+    echo "<iframe id=\"konzilo-iframe\" src=\"$link\" style=\"width: 100%; border: none; height: 0px;\"></iframe>";
 }

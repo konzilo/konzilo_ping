@@ -20,6 +20,8 @@
 
     window.addEventListener('message', function (message) {
       if (message.data.type === 'konziloReady') {
+        console.log('ready');
+        $('#konzilo-iframe').css('height', 300);
         konziloReady = true;
       }
       if (message.data.type === 'updateSent') {
@@ -32,7 +34,8 @@
         }
       }
       if (message.data.type === 'windowHeight') {
-        $('#konzilo-iframe').height(message.data.height + 10);
+        var height = message.data.height > 150 ? message.data.height + 10 : 150;
+        $('#konzilo-iframe').css('height', height + 10);
       }
     });
 
@@ -65,7 +68,7 @@
         status = 'publish';
       }
     });
-    
+
     $('.save-timestamp, .cancel-timestamp').click(syncPost);
 
     $('#post').submit(function (e) {
