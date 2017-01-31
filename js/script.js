@@ -47,7 +47,7 @@
       var year = $('#aa').val();
       var hour = $('#hh').val();
       var minute = $('#mn').val();
-      var tz = parseInt(window.konzilo_ping.tz);
+      var tz = parseInt(window.konzilo.tz);
       if (tz < 10) {
         tz = '0' + tz;
       }
