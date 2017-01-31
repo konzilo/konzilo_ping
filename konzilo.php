@@ -35,7 +35,6 @@ function konzilo_save_update($post_id, $post) {
 
 add_action('save_post', 'konzilo_save_update', 10, 2 );
 
-
 add_action('load-post.php', 'konzilo_meta_box_setup');
 add_action('load-post-new.php', 'konzilo_meta_box_setup');
 

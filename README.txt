@@ -10,6 +10,7 @@ An easy tool for all who manage web and social media. It allows you to:
 ## Installation
 
 * [Create an account](https://app.konzilo.com/signup) in Konzilo, if you haven't already.
+* Make sure you add your site to Konzilo by going to the [accounts page](https://app.konzilo.com/settings/profiles) and add it there.
 * Install the plugin
 * Create a new post or edit an existing post. If
   you set up your site in Konzilo, you should be good to go!
