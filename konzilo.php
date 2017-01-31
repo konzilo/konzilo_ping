@@ -2,7 +2,7 @@
 /*
  * Plugin name: Konzilo
  * Plugin URI: http://wordpress.org/extend/plugins/konzilo/
- * Description: Connect your site wit Konzilo
+ * Description: Connect your site with Konzilo
  * Author: Fabian Sörqvist
  * Author URI: https://www.konzilo.com
  * Version: 0.1
