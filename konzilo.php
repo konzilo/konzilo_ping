@@ -1,8 +1,8 @@
 <?php
 /*
- * Plugin name: Konzilo ping
+ * Plugin name: Konzilo
  * Plugin URI: http://wordpress.org/extend/plugins/konzilo/
- * Description: Ping konzilo when wordpress changes are made.
+ * Description: Connect your site wit Konzilo
  * Author: Fabian Sörqvist
  * Author URI: https://www.konzilo.com
  * Version: 0.1
