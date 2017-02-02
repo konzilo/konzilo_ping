@@ -47,23 +47,21 @@ function konzilo_add_meta_boxes() {
     global $post;
     global $pagenow;
     global $post;
-    if ($post->post_status != 'publish' && (!empty($update) || $post->post_status != 'future')) {
-        wp_register_script('konzilo_script',
+    wp_register_script('konzilo_script',
                           plugins_url('js/script.js', __FILE__),
                           array('jquery'));
-        wp_localize_script('konzilo_script', 'konzilo', array(
-            'tz' => get_option('gmt_offset')
-        ));
-        wp_enqueue_script('konzilo_script');
-        add_meta_box(
-            'konzilo-social-post',      // Unique ID
-            esc_html__( 'Konzilo', 'konzilo' ),    // Title
-            'konzilo_meta_box',   // Callback function
-            'post',         // Admin page (or post type)
-            'normal',         // Context
-            'high'         // Priority
-        );
-    }
+    wp_localize_script('konzilo_script', 'konzilo', array(
+        'tz' => get_option('gmt_offset')
+    ));
+    wp_enqueue_script('konzilo_script');
+    add_meta_box(
+        'konzilo-social-post',      // Unique ID
+        esc_html__( 'Konzilo', 'konzilo' ),    // Title
+        'konzilo_meta_box',   // Callback function
+        'post',         // Admin page (or post type)
+        'normal',         // Context
+        'high'         // Priority
+    );
 }
 
 function konzilo_meta_box( $object, $box ) {
